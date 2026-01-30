@@ -6,8 +6,8 @@ class PokemonRepository {
   PokemonRepository({
     PokemonApiClient? apiClient,
     PokemonLocalDataSource? localDataSource,
-  })  : _apiClient = apiClient ?? PokemonApiClient(),
-        _localDataSource = localDataSource ?? PokemonLocalDataSource();
+  }) : _apiClient = apiClient ?? PokemonApiClient(),
+       _localDataSource = localDataSource ?? PokemonLocalDataSource();
 
   final PokemonApiClient _apiClient;
   final PokemonLocalDataSource _localDataSource;
@@ -27,11 +27,11 @@ class PokemonRepository {
         offset: offset,
       );
 
-      // Cache the results
+      // Cache only new Pokemon (not already in cache)
       await _localDataSource.savePokemonList(pokemonList);
 
       return pokemonList;
-    } catch (e) {
+    } on Exception catch (_) {
       // If API fails, try to get cached data
       final cachedData = await _localDataSource.getPokemonList();
 
@@ -47,8 +47,9 @@ class PokemonRepository {
         return [];
       }
 
-      final lastIndex =
-          endIndex > cachedData.length ? cachedData.length : endIndex;
+      final lastIndex = endIndex > cachedData.length
+          ? cachedData.length
+          : endIndex;
       return cachedData.sublist(offset, lastIndex);
     }
   }
@@ -66,13 +67,14 @@ class PokemonRepository {
       await _localDataSource.savePokemonDetail(detail);
 
       return detail;
-    } catch (e) {
+    } on Exception catch (_) {
       // If API fails, try to get cached data
       final cachedDetail = await _localDataSource.getPokemonDetail(id);
 
       if (cachedDetail == null) {
         throw PokemonRepositoryException(
-          'No internet connection and no cached data available for Pokemon #$id',
+          'No internet connection and no cached data available for '
+          'Pokemon #$id',
         );
       }
 

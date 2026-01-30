@@ -3,5 +3,75 @@
     "counterAppBarTitle": "Contador",
     "@counterAppBarTitle": {
         "description": "Texto mostrado en la AppBar de la página del contador"
+    },
+    "pokedexTitle": "Pokédex",
+    "@pokedexTitle": {
+        "description": "Título de la página de lista de Pokédex"
+    },
+    "pokemonDetail": "Detalle del Pokémon",
+    "@pokemonDetail": {
+        "description": "Título de la página de detalle del Pokémon"
+    },
+    "unknownError": "Error desconocido",
+    "@unknownError": {
+        "description": "Mensaje de error predeterminado"
+    },
+    "errorMessage": "Error: {message}",
+    "@errorMessage": {
+        "description": "Mensaje de error con detalles",
+        "placeholders": {
+            "message": {
+                "type": "String",
+                "example": "Error de red"
+            }
+        }
+    },
+    "goBack": "Volver",
+    "@goBack": {
+        "description": "Botón para volver a la pantalla anterior"
+    },
+    "types": "Tipos",
+    "@types": {
+        "description": "Etiqueta para la sección de tipos de Pokémon"
+    },
+    "height": "Altura",
+    "@height": {
+        "description": "Etiqueta para la altura del Pokémon"
+    },
+    "weight": "Peso",
+    "@weight": {
+        "description": "Etiqueta para el peso del Pokémon"
+    },
+    "abilities": "Habilidades",
+    "@abilities": {
+        "description": "Etiqueta para la sección de habilidades del Pokémon"
+    },
+    "baseStats": "Estadísticas Base",
+    "@baseStats": {
+        "description": "Etiqueta para la sección de estadísticas base del Pokémon"
+    },
+    "exitAppTitle": "Salir de la App",
+    "@exitAppTitle": {
+        "description": "Título del diálogo de confirmación de salida"
+    },
+    "exitAppMessage": "¿Estás seguro de que quieres salir?",
+    "@exitAppMessage": {
+        "description": "Mensaje del diálogo de confirmación de salida"
+    },
+    "cancel": "Cancelar",
+    "@cancel": {
+        "description": "Texto del botón cancelar"
+    },
+    "exit": "Salir",
+    "@exit": {
+        "description": "Texto del botón salir"
+    },
+    "retry": "Reintentar",
+    "@retry": {
+        "description": "Texto del botón reintentar"
+    },
+    "noPokemonFound": "No se encontraron Pokémon",
+    "@noPokemonFound": {
+        "description": "Mensaje cuando no se encuentran Pokémon"
     }
 }

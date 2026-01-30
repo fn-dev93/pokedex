@@ -3,5 +3,75 @@
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
+    },
+    "pokedexTitle": "Pokédex",
+    "@pokedexTitle": {
+        "description": "Title for the Pokédex list page"
+    },
+    "pokemonDetail": "Pokemon Detail",
+    "@pokemonDetail": {
+        "description": "Title for the Pokemon detail page"
+    },
+    "unknownError": "Unknown error",
+    "@unknownError": {
+        "description": "Default error message"
+    },
+    "errorMessage": "Error: {message}",
+    "@errorMessage": {
+        "description": "Error message with details",
+        "placeholders": {
+            "message": {
+                "type": "String",
+                "example": "Network error"
+            }
+        }
+    },
+    "goBack": "Go Back",
+    "@goBack": {
+        "description": "Button to go back to previous screen"
+    },
+    "types": "Types",
+    "@types": {
+        "description": "Label for Pokemon types section"
+    },
+    "height": "Height",
+    "@height": {
+        "description": "Label for Pokemon height"
+    },
+    "weight": "Weight",
+    "@weight": {
+        "description": "Label for Pokemon weight"
+    },
+    "abilities": "Abilities",
+    "@abilities": {
+        "description": "Label for Pokemon abilities section"
+    },
+    "baseStats": "Base Stats",
+    "@baseStats": {
+        "description": "Label for Pokemon base stats section"
+    },
+    "exitAppTitle": "Exit App",
+    "@exitAppTitle": {
+        "description": "Title for exit confirmation dialog"
+    },
+    "exitAppMessage": "Are you sure you want to exit?",
+    "@exitAppMessage": {
+        "description": "Message for exit confirmation dialog"
+    },
+    "cancel": "Cancel",
+    "@cancel": {
+        "description": "Cancel button text"
+    },
+    "exit": "Exit",
+    "@exit": {
+        "description": "Exit button text"
+    },
+    "retry": "Retry",
+    "@retry": {
+        "description": "Retry button text"
+    },
+    "noPokemonFound": "No Pokémon found",
+    "@noPokemonFound": {
+        "description": "Message when no Pokemon are found"
     }
 }

@@ -20,16 +20,40 @@ class PokemonLocalDataSource {
   }
 
   /// Save Pokemon list to local storage
+  /// Maintains order by using sequential indices
   Future<void> savePokemonList(List<Pokemon> pokemonList) async {
     final box = await _pokemonBox;
-    final pokemonMap = {for (final p in pokemonList) p.id: p};
-    await box.putAll(pokemonMap);
+    
+    // Get current list from cache
+    final currentList = await getPokemonList();
+    final existingIds = currentList.map((p) => p.id).toSet();
+
+    // Only add Pokemon that don't exist yet
+    final newPokemon = pokemonList
+        .where((p) => !existingIds.contains(p.id))
+        .toList();
+
+    if (newPokemon.isEmpty) return;
+
+    // Append new Pokemon to the existing list maintaining order
+    final updatedList = {...currentList, ...newPokemon}.toList();
+
+    // Clear and save the complete list with sequential keys to maintain order
+    await box.clear();
+    for (var i = 0; i < updatedList.length; i++) {
+      await box.put(i, updatedList[i]);
+    }
   }
 
   /// Get Pokemon list from local storage
+  /// Returns list in the order it was stored
   Future<List<Pokemon>> getPokemonList() async {
     final box = await _pokemonBox;
-    return box.values.toList()..sort((a, b) => a.id.compareTo(b.id));
+    if (box.isEmpty) return [];
+
+    // Get all keys, sort them, and retrieve values in order
+    final keys = box.keys.toList()..sort();
+    return keys.map((key) => box.get(key)!).toList();
   }
 
   /// Save Pokemon detail to local storage

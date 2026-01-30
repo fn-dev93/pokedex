@@ -35,6 +35,11 @@ class PokemonListState extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [status, pokemonList, hasReachedMax, errorMessage, currentPage];
+  List<Object?> get props => [
+    status,
+    pokemonList,
+    hasReachedMax,
+    errorMessage,
+    currentPage,
+  ];
 }

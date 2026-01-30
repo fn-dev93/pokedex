@@ -5,8 +5,8 @@ import 'package:draftea_pokedex/pokemon/data/pokemon_repository.dart';
 class PokemonListCubit extends Cubit<PokemonListState> {
   PokemonListCubit({
     required PokemonRepository repository,
-  })  : _repository = repository,
-        super(const PokemonListState());
+  }) : _repository = repository,
+       super(const PokemonListState());
 
   final PokemonRepository _repository;
   static const int _pageSize = 20;
@@ -31,7 +31,7 @@ class PokemonListCubit extends Cubit<PokemonListState> {
           currentPage: 1,
         ),
       );
-    } catch (error) {
+    } on Exception catch (error) {
       emit(
         state.copyWith(
           status: PokemonListStatus.failure,
@@ -48,7 +48,8 @@ class PokemonListCubit extends Cubit<PokemonListState> {
     }
 
     try {
-      final offset = state.currentPage * _pageSize;
+      // Use the actual length of pokemonList as offset to ensure continuity
+      final offset = state.pokemonList.length;
       final newPokemon = await _repository.getPokemonList(
         limit: _pageSize,
         offset: offset,
@@ -60,13 +61,13 @@ class PokemonListCubit extends Cubit<PokemonListState> {
         emit(
           state.copyWith(
             status: PokemonListStatus.success,
-            pokemonList: [...state.pokemonList, ...newPokemon],
+            pokemonList: {...state.pokemonList, ...newPokemon}.toList(),
             hasReachedMax: newPokemon.length < _pageSize,
             currentPage: state.currentPage + 1,
           ),
         );
       }
-    } catch (error) {
+    } on Exception catch (error) {
       emit(
         state.copyWith(
           status: PokemonListStatus.failure,
@@ -80,5 +81,10 @@ class PokemonListCubit extends Cubit<PokemonListState> {
   Future<void> refreshPokemon() async {
     emit(const PokemonListState());
     await fetchPokemon();
+  }
+
+  /// Clear cached data
+  Future<void> clearCache() async {
+    await _repository.clearCache();
   }
 }
